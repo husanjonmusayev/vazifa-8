@@ -6,15 +6,13 @@ import { useEffect, useRef, useState } from "react";
 function Login() {
   const username = useRef();
   const password = useRef();
-  let [localuser, setLocaluser] = useState(
+  const [localuser, setLocaluser] = useState(
     JSON.parse(localStorage.getItem("user"))
   );
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (JSON.parse(localStorage.getItem("user"))) {
-      setLocaluser(JSON.parse(localStorage.getItem("user")));
-    }
+    setLocaluser(JSON.parse(localStorage.getItem("user")));
   }, []);
 
   function hendalSubmit(e) {
@@ -25,9 +23,10 @@ function Login() {
         username: username.current.value,
         password: password.current.value,
       };
+
       if (
-        localuser.username == user.username ||
-        localuser.password == user.password
+        localuser.username === user.username &&
+        localuser.password === user.password
       ) {
         navigate("/");
       } else {

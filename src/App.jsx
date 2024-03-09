@@ -10,13 +10,15 @@ import MainLayout from "./pages/MainLayout/MainLayout.jsx";
 
 function App() {
   const location = useLocation();
-  const [user, setUser] = useState(() =>
-    JSON.parse(localStorage.getItem("user"))
+  const [user, setUser] = useState(
+    () => !!JSON.parse(localStorage.getItem("user"))
   );
+
   const navigate = useNavigate();
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
+    console.log(storedUser);
     if (
       !storedUser &&
       location.pathname !== "/login" &&
@@ -31,6 +33,8 @@ function App() {
     redirectTo = "/login",
     isAuthentication,
   }) => {
+    const navigate = useNavigate();
+
     useEffect(() => {
       if (!isAuthentication) {
         navigate(redirectTo);
