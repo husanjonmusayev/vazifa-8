@@ -7,8 +7,8 @@ function Login() {
   const username = useRef();
   const password = useRef();
   let [localuser, setLocaluser] = useState({});
-   let navigate = useNavigate()
-  
+  let navigate = useNavigate();
+
   useEffect(() => {
     setLocaluser(JSON.parse(localStorage.getItem("user")));
   }, []);
@@ -22,10 +22,10 @@ function Login() {
         password: password.current.value,
       };
       if (
-        localuser.username == user.username &&
+        localuser.username == user.username ||
         localuser.password == user.password
       ) {
-        navigate('/')
+        navigate("/");
       } else {
         alert("Foydalanuvchi mavjud emas");
       }
