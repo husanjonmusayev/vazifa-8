@@ -6,11 +6,15 @@ import { useEffect, useRef, useState } from "react";
 function Login() {
   const username = useRef();
   const password = useRef();
-  let [localuser, setLocaluser] = useState({});
+  let [localuser, setLocaluser] = useState(
+    JSON.parse(localStorage.getItem("user"))
+  );
   let navigate = useNavigate();
 
   useEffect(() => {
-    setLocaluser(JSON.parse(localStorage.getItem("user")));
+    if (JSON.parse(localStorage.getItem("user"))) {
+      setLocaluser(JSON.parse(localStorage.getItem("user")));
+    }
   }, []);
 
   function hendalSubmit(e) {
