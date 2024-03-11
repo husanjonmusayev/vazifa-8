@@ -7,6 +7,7 @@ import Movi from "./pages/Movi/Movi";
 import Seris from "./pages/Seris/Seris";
 import Home from "./pages/Home/Home.jsx";
 import MainLayout from "./pages/MainLayout/MainLayout.jsx";
+import Movis from "./pages/Movis/Movis.jsx";
 
 function App() {
   const location = useLocation();
@@ -18,7 +19,7 @@ function App() {
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
-    console.log(storedUser);
+
     if (
       !storedUser &&
       location.pathname !== "/login" &&
@@ -66,6 +67,17 @@ function App() {
           <ProtectedRoute isAuthentication={user} redirectTo="/login">
             <MainLayout>
               <Seris />
+            </MainLayout>
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/movis"
+        element={
+          <ProtectedRoute isAuthentication={user} redirectTo="/login">
+            <MainLayout>
+              <Movis />
             </MainLayout>
           </ProtectedRoute>
         }

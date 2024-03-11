@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./home.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
   let [reck, setreck] = useState([]);
   useEffect(() => {
-    const apiKey = "0PM60S5-AXAM1TR-PRVJ4YY-X3FMVV5";
+    const apiKey = "2NBWE8J-TBX4NH9-J5PW32T-SSDVCKR";
 
     fetch("https://api.kinopoisk.dev/v1.4/movie?lists=top250", {
       headers: {
@@ -16,7 +18,7 @@ export default function Home() {
       .then((data) => setData(data.docs))
       .catch((error) => console.error("Error:", error));
 
-    fetch("https://api.kinopoisk.dev/v1.4/list?page=4&limit=20", {
+    fetch("https://api.kinopoisk.dev/v1.4/list?page=2&limit=40", {
       headers: {
         "X-API-KEY": apiKey,
       },
@@ -25,7 +27,11 @@ export default function Home() {
       .then((data) => setreck(data.docs))
       .catch((error) => console.error("Error:", error));
   }, []);
-  console.log(reck);
+
+  function hendalClick(e) {
+    navigate(`/movi?data=${e.id}`);
+  }
+
   return (
     <>
       <div className="content-header">
@@ -33,7 +39,12 @@ export default function Home() {
         <div className="carousel carousel-center w-full p-2  to-transparent rounded-box">
           {data.map((el) => {
             return (
-              <div class="carousel-item flex flex-col lg:w-1/4 md:w-1/2 p-4 w-full">
+              <div
+                onClick={() => {
+                  hendalClick(el);
+                }}
+                class="carousel-item flex flex-col lg:w-1/4 md:w-1/2 p-4 w-full"
+              >
                 <a class="block relative h-48 rounded overflow-hidden">
                   <img
                     alt="ecommerce"
@@ -59,7 +70,12 @@ export default function Home() {
               <div class="flex flex-wrap -m-4">
                 {reck.map((el) => {
                   return (
-                    <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+                    <div
+                      onClick={() => {
+                        hendalClick(el);
+                      }}
+                      class="lg:w-1/4 md:w-1/2 p-4 w-full"
+                    >
                       <a class="block relative h-48 rounded overflow-hidden">
                         <img
                           alt="ecommerce"

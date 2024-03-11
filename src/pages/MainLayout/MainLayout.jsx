@@ -1,4 +1,5 @@
 import "./leaut.css";
+import { Link } from "react-router-dom";
 
 function MainLayout({ children }) {
   return (
@@ -9,8 +10,14 @@ function MainLayout({ children }) {
             <img src="/logo.png" alt="logo" />
           </div>
           <div className="icons">
-            <img src="/hom.png" alt="home icon" />
-            <img src="/Shape.png" alt="home icon" />
+            <Link to="/">
+              {" "}
+              <img src="/hom.png" alt="home icon" />
+            </Link>
+            <Link to="/movis">
+              {" "}
+              <img src="/Shape.png" alt="home icon" />
+            </Link>
             <img src="/tv.png" alt="home icon" />
             <img src="/Book.png" alt="home icon" />
           </div>
