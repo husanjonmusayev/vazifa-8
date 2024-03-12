@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 function Movi() {
   const location = useLocation();
-  const movi = location.search.slice(6);
+  const movi = location.search.slice(1);
   const [data, setData] = useState([]);
   const apiKey = "2NBWE8J-TBX4NH9-J5PW32T-SSDVCKR";
   useEffect(() => {
@@ -14,7 +14,7 @@ function Movi() {
       .then((response) => response.json())
       .then((data) => setData(data))
       .catch((error) => console.error("Error:", error));
-  }, []);
+  }, [data]);
 
   return (
     <>
@@ -25,7 +25,7 @@ function Movi() {
               <img
                 className="object-cover object-left h-96 w-full rounded"
                 alt="hero"
-                src={data.poster.previewUrl}
+                src={data.length ? data.poster.previewUrl : " "}
               />
             </div>
             <div className="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">

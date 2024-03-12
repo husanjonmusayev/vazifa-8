@@ -17,8 +17,9 @@ function Movis() {
   }, []);
 
   function hendalClick(e) {
-    navigate(`/movi?${e}`);
+    navigate(`/movi?${e.id}`);
   }
+  console.log(data);
 
   return (
     <section className="text-gray-600 body-font">
@@ -36,7 +37,7 @@ function Movis() {
                   <img
                     alt="ecommerce"
                     className="object-cover object-center w-full h-full block"
-                    src={el.cover.url}
+                    src={el.poster.previewUrl}
                   />
                 </a>
                 <div className="mt-4">

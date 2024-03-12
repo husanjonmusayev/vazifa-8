@@ -93,6 +93,16 @@ function App() {
           </ProtectedRoute>
         }
       />
+       <Route
+        path="/seris"
+        element={
+          <ProtectedRoute isAuthentication={user} redirectTo="/login">
+            <MainLayout>
+              <Seris />
+            </MainLayout>
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   );
 }
